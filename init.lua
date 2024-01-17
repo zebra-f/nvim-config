@@ -113,7 +113,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -188,8 +188,39 @@ require('lazy').setup({
       end,
     },
   },
-  -- { "EdenEast/nightfox.nvim", priority = 1000, function() vim.cmd.colorscheme 'nightfox' end, },
-  { 'sainnhe/everforest',   priority = 1000, config = function() vim.cmd.colorscheme 'everforest' end, },
+
+  -- Themes
+  -- Themes
+  -- Themes
+
+  { "kihachi2000/yash.nvim", priority = 1000, config = function() vim.cmd.colorscheme 'yash' end, },
+
+  -- {
+  --   "oxfist/night-owl.nvim",
+  --   lazy = false,  -- make sure we load this during startup if it is your main colorscheme
+  --   priority = 1000, -- make sure to load this before all the other start plugins
+  --   config = function()
+  --     -- load the colorscheme here
+  --     vim.cmd.colorscheme("night-owl")
+  --   end,
+  -- },
+
+  -- {
+  --   'ribru17/bamboo.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require('bamboo').setup {
+  --       -- optional configuration here
+  --     }
+  --     require('bamboo').load()
+  --   end,
+  -- },
+
+  -- { "EdenEast/nightfox.nvim", priority = 1000, config = function() vim.cmd.colorscheme 'nightfox' end, },
+
+  -- { 'sainnhe/everforest',   priority = 1000, config = function() vim.cmd.colorscheme 'everforest' end, },
+
   -- {
   --   -- Theme inspired by Atom
   --   'navarasu/onedark.nvim',
