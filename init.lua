@@ -113,7 +113,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim',             opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -190,21 +190,40 @@ require('lazy').setup({
   },
 
   -- Themes
-  -- Themes
-  -- Themes
-
-  { "kihachi2000/yash.nvim", priority = 1000, config = function() vim.cmd.colorscheme 'yash' end, },
-
+  --
+  -- {
+  --   'crispybaccoon/evergarden',
+  --   priority = 1000,
+  --   opts = {
+  --     transparent_background = true,
+  --     contrast_dark = 'medium', -- 'hard'|'medium'|'soft'
+  --     overrides = {},           -- add custom overrides
+  --   },
+  --   config = function() vim.cmd.colorscheme 'evergarden' end,
+  -- },
+  --
+  { 'wittyjudge/gruvbox-material.nvim', priority = 1000, config = function() vim.cmd.colorscheme 'gruvbox-material' end, },
+  --
+  -- { 'kyoh86/momiji',        priority = 1000, config = function() vim.cmd.colorscheme 'momiji' end, },
+  --
+  -- { "daschw/leaf.nvim",     priority = 1000, config = function() vim.cmd.colorscheme 'leaf' end, },
+  --
+  -- { "AlessandroYorba/Despacio", priority = 1000, config = function() vim.cmd.colorscheme 'despacio' end, },
+  --
+  -- { "rhysd/vim-color-spring-night", priority = 1000, config = function() vim.cmd.colorscheme 'spring-night' end, },
+  --
+  -- { "kihachi2000/yash.nvim", priority = 1000, config = function() vim.cmd.colorscheme 'yash' end, },
+  --
   -- {
   --   "oxfist/night-owl.nvim",
-  --   lazy = false,  -- make sure we load this during startup if it is your main colorscheme
+  --   lazy = false,    -- make sure we load this during startup if it is your main colorscheme
   --   priority = 1000, -- make sure to load this before all the other start plugins
   --   config = function()
   --     -- load the colorscheme here
   --     vim.cmd.colorscheme("night-owl")
   --   end,
   -- },
-
+  --
   -- {
   --   'ribru17/bamboo.nvim',
   --   lazy = false,
@@ -216,11 +235,19 @@ require('lazy').setup({
   --     require('bamboo').load()
   --   end,
   -- },
-
+  --
+  -- { "Domeee/mosel.nvim",    priority = 1000, config = function() vim.cmd.colorscheme 'mosel' end, },
+  --
   -- { "EdenEast/nightfox.nvim", priority = 1000, config = function() vim.cmd.colorscheme 'nightfox' end, },
-
-  -- { 'sainnhe/everforest',   priority = 1000, config = function() vim.cmd.colorscheme 'everforest' end, },
-
+  --
+  -- {
+  --   'sainnhe/everforest',
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme 'everforest'
+  --   end,
+  -- },
+  --
   -- {
   --   -- Theme inspired by Atom
   --   'navarasu/onedark.nvim',
@@ -237,7 +264,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'auto',
         component_separators = '|',
         section_separators = '',
       },
@@ -696,3 +723,34 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+--
+-- theme
+-- require 'evergarden'.setup {
+--   transparent_background = false,
+--   contrast_dark = 'medium', -- 'hard'|'medium'|'soft'
+--   override_terminal = true,
+--   style = {
+--     tabline = { reverse = true, color = 'green' },
+--     search = { reverse = false, inc_reverse = true },
+--     types = { italic = true },
+--     keyword = { italic = false },
+--     comment = { italic = false },
+--   },
+--   overrides = {}, -- add custom overrides
+-- }
+--
+local highlight = {
+  "CursorColumn",
+}
+require("ibl").setup {
+  indent = { highlight = highlight, char = "\u{2502}" },
+  whitespace = {
+    remove_blankline_trail = false,
+  },
+  scope = {
+    enabled = true,
+    show_start = false,
+    show_end = false
+  },
+}
