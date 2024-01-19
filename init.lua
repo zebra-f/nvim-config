@@ -754,3 +754,10 @@ require("ibl").setup {
     show_end = false
   },
 }
+
+-- yank and paste from and to the clipboard
+vim.api.nvim_set_option("clipboard", "unnamedplus")
+-- offsets the cursor by 8 lines on scroll
+vim.api.nvim_set_option("scrolloff", 8)
+-- looks for exact match on search only if at lesat one char is capitalized
+vim.api.nvim_set_option('smartcase', true)
