@@ -94,7 +94,9 @@ require('lazy').setup({
       'folke/neodev.nvim',
     },
   },
-
+  -- null-ls
+  { 'jose-elias-alvarez/null-ls.nvim' },
+  --
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -113,7 +115,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',             opts = {} },
+  { 'folke/which-key.nvim',           opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -204,41 +206,7 @@ require('lazy').setup({
   --
   { 'wittyjudge/gruvbox-material.nvim', priority = 1000, config = function() vim.cmd.colorscheme 'gruvbox-material' end, },
   --
-  -- { 'kyoh86/momiji',        priority = 1000, config = function() vim.cmd.colorscheme 'momiji' end, },
-  --
-  -- { "daschw/leaf.nvim",     priority = 1000, config = function() vim.cmd.colorscheme 'leaf' end, },
-  --
-  -- { "AlessandroYorba/Despacio", priority = 1000, config = function() vim.cmd.colorscheme 'despacio' end, },
-  --
-  -- { "rhysd/vim-color-spring-night", priority = 1000, config = function() vim.cmd.colorscheme 'spring-night' end, },
-  --
   -- { "kihachi2000/yash.nvim", priority = 1000, config = function() vim.cmd.colorscheme 'yash' end, },
-  --
-  -- {
-  --   "oxfist/night-owl.nvim",
-  --   lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-  --   priority = 1000, -- make sure to load this before all the other start plugins
-  --   config = function()
-  --     -- load the colorscheme here
-  --     vim.cmd.colorscheme("night-owl")
-  --   end,
-  -- },
-  --
-  -- {
-  --   'ribru17/bamboo.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require('bamboo').setup {
-  --       -- optional configuration here
-  --     }
-  --     require('bamboo').load()
-  --   end,
-  -- },
-  --
-  -- { "Domeee/mosel.nvim",    priority = 1000, config = function() vim.cmd.colorscheme 'mosel' end, },
-  --
-  -- { "EdenEast/nightfox.nvim", priority = 1000, config = function() vim.cmd.colorscheme 'nightfox' end, },
   --
   -- {
   --   'sainnhe/everforest',
@@ -281,8 +249,25 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',  opts = {} },
+  { 'numToStr/Comment.nvim',            opts = {} },
 
+
+  {
+    'nanozuki/tabby.nvim',
+    event = 'VimEnter',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+  }, -- Tree
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end,
+  },
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
@@ -761,3 +746,45 @@ vim.api.nvim_set_option("clipboard", "unnamedplus")
 vim.api.nvim_set_option("scrolloff", 8)
 -- looks for exact match on search only if at lesat one char is capitalized
 vim.api.nvim_set_option('smartcase', true)
+--
+-- tabs config
+local theme = {
+  fill = 'TabLineFill',
+  -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
+  head = 'TabLine',
+  current_tab = 'TabLineSel',
+  tab = 'TabLine',
+  win = 'TabLine',
+  tail = 'TabLine',
+}
+require('tabby.tabline').set(function(line)
+  return {
+    {
+      { '    ', hl = theme.head },
+      line.sep('  ', theme.head, theme.fill),
+    },
+    line.tabs().foreach(function(tab)
+      local hl = tab.is_current() and theme.current_tab or theme.tab
+      return {
+        line.sep(' ', hl, theme.fill),
+        tab.is_current() and '•' or '',
+        tab.number(),
+        tab.name(),
+        tab.close_btn('x '),
+        hl = hl,
+        margin = ' ',
+      }
+    end),
+    line.spacer(),
+    line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
+      return {
+        win.is_current() and '•' or '',
+        win.buf_name(),
+        hl = theme.win,
+        margin = ' ',
+        line.sep(' ', theme.head, theme.fill),
+      }
+    end),
+    hl = theme.fill,
+  }
+end)
