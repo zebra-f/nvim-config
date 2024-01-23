@@ -94,8 +94,6 @@ require('lazy').setup({
       'folke/neodev.nvim',
     },
   },
-  -- null-ls
-  { 'jose-elias-alvarez/null-ls.nvim' },
   --
   {
     -- Autocompletion
@@ -115,7 +113,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',           opts = {} },
+  { 'folke/which-key.nvim',             opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -192,6 +190,7 @@ require('lazy').setup({
   },
 
   -- Themes
+  -- font ProggyVector
   --
   -- {
   --   'crispybaccoon/evergarden',
@@ -249,14 +248,23 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',            opts = {} },
+  { 'numToStr/Comment.nvim',  opts = {} },
 
-
+  -- Formatting
+  {
+    "nvimdev/guard.nvim",
+    -- Builtin configuration, optional
+    dependencies = {
+      "nvimdev/guard-collection",
+    },
+  },
+  -- Tabs
   {
     'nanozuki/tabby.nvim',
     event = 'VimEnter',
     dependencies = 'nvim-tree/nvim-web-devicons',
-  }, -- Tree
+  },
+  -- Tree
   {
     "nvim-tree/nvim-tree.lua",
     version = "*",
@@ -301,7 +309,7 @@ require('lazy').setup({
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
+  require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -788,3 +796,15 @@ require('tabby.tabline').set(function(line)
     hl = theme.fill,
   }
 end)
+
+-- Format Guard
+local ft = require('guard.filetype')
+-- Assuming you have guard-collection
+ft('typescript,javascript,typescriptreact,javascriptreact'):fmt('prettier')
+-- Call setup() LAST!
+require('guard').setup({
+  -- the only options for the setup function
+  fmt_on_save = true,
+  -- Use lsp if no formatter was defined for this filetype
+  lsp_as_default_formatter = true,
+})
