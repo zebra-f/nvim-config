@@ -800,7 +800,7 @@ require('tabby.tabline').set(function(line)
   }
 end)
 
--- Format Guard
+-- guard
 local ft = require('guard.filetype')
 -- Assuming you have guard-collection
 ft('typescript,javascript,typescriptreact,javascriptreact'):fmt('prettier')
@@ -812,6 +812,7 @@ require('guard').setup({
   lsp_as_default_formatter = true,
 })
 
+-- auto tag
 local filetypes = {
   'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
   'xml',
@@ -822,3 +823,11 @@ local filetypes = {
 require('nvim-ts-autotag').setup(
   { filetypes = filetypes }
 )
+
+-- folke key bindings
+local wk = require("which-key")
+wk.register({
+  ["<leader>f"] = { name = "+custom [F]unctionality" },
+  -- vim.api.nvim_set_keymap('n', '<leader>f', ':NvimTreeOpen<CR>', { noremap = true, silent = true })
+  ["<leader>ft"] = { "<cmd>NvimTreeOpen<cr>", "Open Tree" },
+})
