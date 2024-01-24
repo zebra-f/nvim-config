@@ -248,7 +248,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',  opts = {} },
+  { 'numToStr/Comment.nvim', opts = {} },
 
   -- Formatting
   {
@@ -276,6 +276,9 @@ require('lazy').setup({
       require("nvim-tree").setup {}
     end,
   },
+  --
+  --
+  { 'windwp/nvim-ts-autotag' },
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
@@ -309,7 +312,7 @@ require('lazy').setup({
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  require 'kickstart.plugins.autoformat',
+  -- require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -808,3 +811,14 @@ require('guard').setup({
   -- Use lsp if no formatter was defined for this filetype
   lsp_as_default_formatter = true,
 })
+
+local filetypes = {
+  'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
+  'xml',
+  'php',
+  'markdown',
+  'astro', 'glimmer', 'handlebars', 'hbs'
+}
+require('nvim-ts-autotag').setup(
+  { filetypes = filetypes }
+)
