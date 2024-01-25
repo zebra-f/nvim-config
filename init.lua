@@ -495,7 +495,7 @@ vim.defer_fn(function()
     -- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
     modules = {},
     highlight = { enable = true },
-    indent = { enable = true },
+    indent = { enable = true, disable = { 'python' } },
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -756,7 +756,7 @@ require("ibl").setup {
     show_end = false
   },
 }
-
+--
 -- yank and paste from and to the clipboard
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 -- offsets the cursor by 8 lines on scroll
