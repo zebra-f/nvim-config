@@ -837,3 +837,9 @@ wk.register({
   -- vim.api.nvim_set_keymap('n', '<leader>f', ':NvimTreeOpen<CR>', { noremap = true, silent = true })
   ["<leader>ft"] = { "<cmd>NvimTreeOpen<cr>", "Open Tree" },
 })
+
+-- telescope ignore setup
+-- require('telescope').setup { defaults = { file_ignore_patterns = { "node_modules" } } }
+--
+-- replaced by (installation of):
+-- https://github.com/BurntSushi/ripgrep
