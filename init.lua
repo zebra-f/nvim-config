@@ -77,23 +77,8 @@ require('lazy').setup({
 	-- 'tpope/vim-sleuth',
 	{
 		'tpope/vim-sleuth',
-		lazy = true,
-		config = function() print("vim-sleuth loaded") end,
+		lazy = false,
 	},
-
-	-- vim-polyglot
-	-- {
-	-- 	'sheerun/vim-polyglot',
-	-- 	lazy = true,
-	-- 	dependencies = { 'tpope/vim-sleuth' },
-	-- 	config = function() print("vim-polyglot loaded") end,
-	-- }, -- added
-	-- django-plus
-	-- {
-	-- 	'tweekmonster/django-plus.vim',
-	-- 	lazy = false
-	-- }, -- added
-
 	-- NOTE: This is where your plugins related to LSP can be installed.
 	--  The configuration is done below. Search for lspconfig to find it below.
 	{
@@ -131,7 +116,61 @@ require('lazy').setup({
 	},
 
 	-- Useful plugin to show you pending keybinds.
-	{ 'folke/which-key.nvim',  opts = {} },
+	-- { 'folke/which-key.nvim',  opts = {} },
+	{
+		'folke/which-key.nvim',
+		event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+		opts = {
+			icons = {
+				-- set icon mappings to true if you have a Nerd Font
+				mappings = vim.g.have_nerd_font,
+				-- If you are using a Nerd Font: set icons.keys to an empty table which will use the
+				-- default whick-key.nvim defined Nerd Font icons, otherwise define a string table
+				keys = vim.g.have_nerd_font and {} or {
+					Up = '<Up> ',
+					Down = '<Down> ',
+					Left = '<Left> ',
+					Right = '<Right> ',
+					C = '<C-…> ',
+					M = '<M-…> ',
+					D = '<D-…> ',
+					S = '<S-…> ',
+					CR = '<CR> ',
+					Esc = '<Esc> ',
+					ScrollWheelDown = '<ScrollWheelDown> ',
+					ScrollWheelUp = '<ScrollWheelUp> ',
+					NL = '<NL> ',
+					BS = '<BS> ',
+					Space = '<Space> ',
+					Tab = '<Tab> ',
+					F1 = '<F1>',
+					F2 = '<F2>',
+					F3 = '<F3>',
+					F4 = '<F4>',
+					F5 = '<F5>',
+					F6 = '<F6>',
+					F7 = '<F7>',
+					F8 = '<F8>',
+					F9 = '<F9>',
+					F10 = '<F10>',
+					F11 = '<F11>',
+					F12 = '<F12>',
+				},
+			},
+
+			-- Document existing key chains
+			spec = {
+				{ '<leader>c', group = '[C]ode',     mode = { 'n', 'x' } },
+				{ '<leader>d', group = '[D]ocument' },
+				{ '<leader>r', group = '[R]ename' },
+				{ '<leader>s', group = '[S]earch' },
+				{ '<leader>w', group = '[W]orkspace' },
+				{ '<leader>t', group = '[T]oggle' },
+				{ '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+			},
+		},
+	},
+
 	{
 		-- Adds git related signs to the gutter, as well as utilities for managing changes
 		'lewis6991/gitsigns.nvim',
@@ -640,22 +679,27 @@ local on_attach = function(_, bufnr)
 end
 
 -- document existing key chains
-require('which-key').register {
-	['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-	['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-	['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-	['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
-	['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-	['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-	['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-	['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-}
--- register which-key VISUAL mode
+local wk = require('which-key')
+-- {
+-- 	['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+-- 	['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+-- 	['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
+-- 	['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+-- 	['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+-- 	['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+-- 	['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
+-- 	['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+-- }
 -- required for visual <leader>hs (hunk stage) to work
-require('which-key').register({
-	['<leader>'] = { name = 'VISUAL <leader>' },
-	['<leader>h'] = { 'Git [H]unk' },
-}, { mode = 'v' })
+-- deprecated
+-- wk.register({
+-- 	['<leader>'] = { name = 'VISUAL <leader>' },
+-- 	['<leader>h'] = { 'Git [H]unk' },
+-- }, { mode = 'v' })
+wk.add({
+	{ "<leader>f",  group = "Custom [F]unctionality" },
+	{ "<leader>ft", "<cmd>NvimTreeOpen<cr>",         desc = "Open [T]ree" }
+})
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
@@ -916,13 +960,6 @@ require('nvim-ts-autotag').setup(
 	{ filetypes = filetypes }
 )
 
--- folke key bindings
-local wk = require("which-key")
-wk.register({
-	["<leader>f"] = { name = "+custom [F]unctionality" },
-	-- vim.api.nvim_set_keymap('n', '<leader>f', ':NvimTreeOpen<CR>', { noremap = true, silent = true })
-	["<leader>ft"] = { "<cmd>NvimTreeOpen<cr>", "Open Tree" },
-}) -- deprecated
 
 -- telescope ignore setup
 -- require('telescope').setup { defaults = { file_ignore_patterns = { "node_modules" } } }
@@ -944,3 +981,8 @@ vim.opt["shiftwidth"] = 4
 --     html = "htmldjango",
 --   }
 -- })
+--
+--
+--
+--
+-- Font: ProggyVector
