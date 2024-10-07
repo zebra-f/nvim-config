@@ -246,57 +246,6 @@ require('lazy').setup({
 		},
 	},
 
-	-- Themes
-	-- font ProggyVector
-	--
-	-- {
-	--   'crispybaccoon/evergarden',
-	--   priority = 1000,
-	--   opts = {
-	--     transparent_background = true,
-	--     contrast_dark = 'medium', -- 'hard'|'medium'|'soft'
-	--     overrides = {},           -- add custom overrides
-	--   },
-	--   config = function() vim.cmd.colorscheme 'evergarden' end,
-	-- },
-	--
-
-	{
-		'sainnhe/gruvbox-material',
-		lazy = false,
-		priority = 1000,
-		config = function()
-			-- Optionally configure and load the colorscheme
-			-- directly inside the plugin declaration.
-			vim.g.gruvbox_material_enable_italic = true
-			vim.cmd.colorscheme('gruvbox-material')
-		end
-	},
-	-- { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
-	-- not working
-	-- { 'wittyjudge/gruvbox-material.nvim', priority = 1000, config = function() vim.cmd.colorscheme 'gruvbox-material' end, },
-	--
-	-- { "kihachi2000/yash.nvim", priority = 1000, config = function() vim.cmd.colorscheme 'yash' end, },
-	--
-	-- {
-	--   'sainnhe/everforest',
-	--   priority = 1000,
-	--   config = function()
-	--     vim.cmd.colorscheme 'everforest'
-	--   end,
-	-- },
-	--
-	-- {
-	--   -- Theme inspired by Atom
-	--   'navarasu/onedark.nvim',
-	--   priority = 1000,
-	--   config = function()
-	--     vim.cmd.colorscheme 'onedark'
-	--   end,
-	-- },
-
-
-
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
@@ -511,7 +460,7 @@ local function find_git_root()
 
 	-- Find the Git root directory from the current file's path
 	local git_root = vim.fn.systemlist('git -C ' .. vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')
-		[1]
+	    [1]
 	if vim.v.shell_error ~= 0 then
 		print 'Not a git repository. Searching on current working directory'
 		return cwd
@@ -811,50 +760,6 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
---
---
--- theme
--- require 'evergarden'.setup {
---   transparent_background = false,
---   contrast_dark = 'medium', -- 'hard'|'medium'|'soft'
---   override_terminal = true,
---   style = {
---     tabline = { reverse = true, color = 'green' },
---     search = { reverse = false, inc_reverse = true },
---     types = { italic = true },
---     keyword = { italic = false },
---     comment = { italic = false },
---   },
---   overrides = {}, -- add custom overrides
--- }
---
--- gruvbox config
--- require("gruvbox").setup({
---   terminal_colors = true, -- add neovim terminal colors
---   undercurl = false,
---   underline = false,
---   bold = false,
---   italic = {
---     strings = true,
---     emphasis = true,
---     comments = true,
---     operators = false,
---     folds = true,
---   },
---   strikethrough = true,
---   invert_selection = false,
---   invert_signs = false,
---   invert_tabline = false,
---   invert_intend_guides = false,
---   inverse = true,    -- invert background for search, diffs, statuslines and errors
---   contrast = "soft", -- can be "hard", "soft" or empty string
---   palette_overrides = {},
---   overrides = {},
---   dim_inactive = false,
---   transparent_mode = false,
--- })
--- vim.cmd("colorscheme gruvbox")
-
 
 local highlight = {
 	"CursorColumn",
@@ -981,8 +886,3 @@ vim.opt["shiftwidth"] = 4
 --     html = "htmldjango",
 --   }
 -- })
---
---
---
---
--- Font: ProggyVector
