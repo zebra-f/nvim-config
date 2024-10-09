@@ -3,17 +3,29 @@ return {
   -- Font: ProggyVector
   --
   -- {
-  --   'crispybaccoon/evergarden',
+  --   'sainnhe/edge',
+  --   lazy = false,
   --   priority = 1000,
-  --   opts = {
-  --     transparent_background = true,
-  --     contrast_dark = 'medium', -- 'hard'|'medium'|'soft'
-  --     overrides = {},           -- add custom overrides
-  --   },
-  --   config = function() vim.cmd.colorscheme 'evergarden' end,
-  -- },
-  --
-
+  --   config = function()
+  --     -- Optionally configure and load the colorscheme
+  --     -- directly inside the plugin declaration.
+  --     vim.g.edge_style = 'default'
+  --     vim.g.edge_enable_italic = true
+  --     vim.cmd.colorscheme('edge')
+  --   end
+  -- }
+  -- {
+  --   'sainnhe/everforest',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     -- Optionally configure and load the colorscheme
+  --     -- directly inside the plugin declaration.
+  --     vim.g.everforest_background = 'soft'
+  --     vim.g.everforest_enable_italic = true
+  --     vim.cmd.colorscheme('everforest')
+  --   end
+  -- }
   {
     'sainnhe/gruvbox-material',
     lazy = false,
@@ -22,9 +34,23 @@ return {
       -- Optionally configure and load the colorscheme
       -- directly inside the plugin declaration.
       vim.g.gruvbox_material_enable_italic = true
+      vim.g.gruvbox_material_background = 'medium'
+      -- vim.g.gruvbox_material_dim_inactive_windows = 1
       vim.cmd.colorscheme('gruvbox-material')
     end
   },
+  -- {
+  --   'sainnhe/sonokai',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     -- Optionally configure and load the colorscheme
+  --     -- directly inside the plugin declaration.
+  --     vim.g.sonokai_style = 'default'
+  --     vim.g.sonokai_enable_italic = true
+  --     vim.cmd.colorscheme('sonokai')
+  --   end
+  -- }
 }
 
 

@@ -293,25 +293,6 @@ require('lazy').setup({
 		event = 'VimEnter',
 		dependencies = 'nvim-tree/nvim-web-devicons',
 	},
-	-- Tree
-	{
-		"nvim-tree/nvim-tree.lua",
-		version = "*",
-		lazy = false,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require("nvim-tree").setup({
-				actions = {
-					open_file = {
-						quit_on_open = true,
-					}
-				}
-			})
-		end,
-	},
-	--
 	--
 	{ 'windwp/nvim-ts-autotag' },
 	-- Fuzzy Finder (files, lsp, etc)
@@ -362,7 +343,6 @@ require('lazy').setup({
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
-
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -525,7 +505,7 @@ vim.defer_fn(function()
 		-- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
 		modules = {},
 		highlight = { enable = true },
-		indent = { enable = true, disable = { "python" } },
+		indent = { enable = true, disable = { 'python' } },
 		incremental_selection = {
 			enable = true,
 			keymaps = {
@@ -640,14 +620,25 @@ local wk = require('which-key')
 -- 	['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
 -- }
 -- required for visual <leader>hs (hunk stage) to work
--- deprecated
 -- wk.register({
 -- 	['<leader>'] = { name = 'VISUAL <leader>' },
 -- 	['<leader>h'] = { 'Git [H]unk' },
 -- }, { mode = 'v' })
 wk.add({
-	{ "<leader>f",  group = "Custom [F]unctionality" },
-	{ "<leader>ft", "<cmd>NvimTreeOpen<cr>",         desc = "Open [T]ree" }
+	{ "<leader>f", group = "Custom [F]unctionality" },
+	{
+		"<leader>ft",
+		-- '<cmd>Neotree<cr>'
+		function()
+			local lazy_util = require('lazy.core.config')
+			if lazy_util.plugins['neo-tree.nvim'] then -- Note: use the full plugin name
+				vim.cmd('Neotree')
+			else
+				print("Neotree is not loaded or available")
+			end
+		end,
+		desc = "Open [T]ree"
+	}
 })
 
 -- mason-lspconfig requires that these setup functions are called in this order
@@ -839,13 +830,7 @@ ft('htmldjango'):fmt({
 	},
 	stdin = true
 })
--- Call setup() LAST!
--- require('guard').setup({
--- 	-- the only options for the setup function
--- 	fmt_on_save = true,
--- 	-- Use lsp if no formatter was defined for this filetype
--- 	lsp_as_default_formatter = true,
--- }) -- deprecated
+-- Call LAST!
 vim.g.guard_config = {
 	fmt_on_save = true,
 	-- Use lsp if no formatter was defined for this filetype
@@ -873,9 +858,13 @@ require('nvim-ts-autotag').setup(
 -- https://github.com/BurntSushi/ripgrep
 --
 --
-vim.opt["tabstop"] = 4
-vim.opt["shiftwidth"] = 4
-
+-- vim.opt["tabstop"] = 4
+-- vim.opt["shiftwidth"] = 4
+vim.wo.relativenumber = true
+vim.keymap.set('n', '<A-h>', '<C-w>h', { desc = "Move to left window" })
+vim.keymap.set('n', '<A-j>', '<C-w>j', { desc = "Move to lower window" })
+vim.keymap.set('n', '<A-k>', '<C-w>k', { desc = "Move to upper window" })
+vim.keymap.set('n', '<A-l>', '<C-w>l', { desc = "Move to right window" })
 
 -- vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 --   pattern = "*.html",
