@@ -627,7 +627,7 @@ local wk = require('which-key')
 wk.add({
 	{ "<leader>f", group = "Custom [F]unctionality" },
 	{
-		"<leader>ft",
+		"<leader>ff",
 		-- '<cmd>Neotree<cr>'
 		function()
 			local lazy_util = require('lazy.core.config')
@@ -637,7 +637,12 @@ wk.add({
 				print("Neotree is not loaded or available")
 			end
 		end,
-		desc = "Open [T]ree"
+		desc = "Open [F]ile Tree"
+	},
+	{
+		"<leader>ft",
+		'<cmd>tabnew<cr>',
+		desc = "Open New [T]ab"
 	}
 })
 

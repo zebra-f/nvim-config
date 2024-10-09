@@ -9,7 +9,7 @@ return {
   --   config = function()
   --     -- Optionally configure and load the colorscheme
   --     -- directly inside the plugin declaration.
-  --     vim.g.edge_style = 'default'
+  --     vim.g.edge_style = 'neon'
   --     vim.g.edge_enable_italic = true
   --     vim.cmd.colorscheme('edge')
   --   end
@@ -34,7 +34,7 @@ return {
       -- Optionally configure and load the colorscheme
       -- directly inside the plugin declaration.
       vim.g.gruvbox_material_enable_italic = true
-      vim.g.gruvbox_material_background = 'medium'
+      vim.g.gruvbox_material_background = 'hard'
       -- vim.g.gruvbox_material_dim_inactive_windows = 1
       vim.cmd.colorscheme('gruvbox-material')
     end
@@ -46,7 +46,7 @@ return {
   --   config = function()
   --     -- Optionally configure and load the colorscheme
   --     -- directly inside the plugin declaration.
-  --     vim.g.sonokai_style = 'maia'
+  --     vim.g.sonokai_style = 'shusia'
   --     vim.g.sonokai_enable_italic = true
   --     vim.cmd.colorscheme('sonokai')
   --   end
