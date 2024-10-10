@@ -116,7 +116,6 @@ require('lazy').setup({
 	},
 
 	-- Useful plugin to show you pending keybinds.
-	-- { 'folke/which-key.nvim',  opts = {} },
 	{
 		'folke/which-key.nvim',
 		event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -504,7 +503,10 @@ vim.defer_fn(function()
 		ignore_install = {},
 		-- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
 		modules = {},
-		highlight = { enable = true },
+		highlight = {
+			enable = true,
+			additional_vim_regex_highlighting = { "python" }, -- +
+		},
 		indent = { enable = true, disable = { 'python' } },
 		incremental_selection = {
 			enable = true,
