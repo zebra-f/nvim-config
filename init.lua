@@ -97,7 +97,6 @@ require('lazy').setup({
 			'folke/neodev.nvim',
 		},
 	},
-	--
 	{
 		-- Autocompletion
 		'hrsh7th/nvim-cmp',
@@ -244,14 +243,16 @@ require('lazy').setup({
 			end,
 		},
 	},
-
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
 		opts = {},
-		config = function(_, opts) require 'lsp_signature'.setup(opts) end
+		config = function(_, opts)
+			local lsp_signature = require('lsp_signature')
+			lsp_signature.setup(opts) -- +
+			lsp_signature.on_attach()
+		end
 	},
-
 	{
 		-- Set lualine as statusline
 		'nvim-lualine/lualine.nvim',
@@ -720,6 +721,10 @@ cmp.setup {
 	completion = {
 		completeopt = 'menu,menuone,noinsert',
 	},
+	formatting = {
+		fields = { "kind", "abbr", "menu" },
+		expandable_indicator = true,
+	},
 	mapping = cmp.mapping.preset.insert {
 		['<C-n>'] = cmp.mapping.select_next_item(),
 		['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -856,6 +861,9 @@ local filetypes = {
 require('nvim-ts-autotag').setup(
 	{ filetypes = filetypes }
 )
+
+
+
 
 
 -- telescope ignore setup
