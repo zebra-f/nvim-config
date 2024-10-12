@@ -862,14 +862,9 @@ require('nvim-ts-autotag').setup(
 	{ filetypes = filetypes }
 )
 
-
-
-
-
 -- telescope ignore setup
--- require('telescope').setup { defaults = { file_ignore_patterns = { "node_modules" } } }
---
--- replaced by (installation of):
+require('telescope').setup { defaults = { file_ignore_patterns = { "node_modules", "__pycache__/" } } }
+-- part of telescope ignore patterns (like .git/) was replaced by (installation of):
 -- https://github.com/BurntSushi/ripgrep
 --
 --
@@ -890,3 +885,4 @@ vim.keymap.set('n', '<A-l>', '<C-w>l', { desc = "Move to right window" })
 --     html = "htmldjango",
 --   }
 -- })
+--

@@ -182,7 +182,7 @@ return {
             hide_gitignored = true,
             hide_hidden = true, -- only works on Windows for hidden files/directories
             hide_by_name = {
-              --"node_modules"
+              "__pycache__",    --"node_modules"
             },
             hide_by_pattern = { -- uses glob style patterns
               --"*.meta",
@@ -292,6 +292,18 @@ return {
               ["ot"] = { "order_by_type", nowait = false },
             }
           }
+        },
+        event_handlers = {
+          {
+            event = "file_open_requested",
+            handler = function()
+              -- auto close
+              -- vim.cmd("Neotree close")
+              -- OR
+              require("neo-tree.command").execute({ action = "close" })
+              -- vim.cmd("Neotree")
+            end
+          },
         }
       })
     end
