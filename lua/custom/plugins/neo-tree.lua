@@ -204,7 +204,7 @@ return {
           },
           follow_current_file = {
             enabled = false,                      -- This will find and focus the file in the active buffer every time
-            --               -- the current file is changed while the tree is open.
+            --                                    -- the current file is changed while the tree is open.
             leave_dirs_open = false,              -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
           },
           group_empty_dirs = false,               -- when true, empty folders will be grouped together
@@ -252,7 +252,7 @@ return {
         buffers = {
           follow_current_file = {
             enabled = true,          -- This will find and focus the file in the active buffer every time
-            --              -- the current file is changed while the tree is open.
+            --                       -- the current file is changed while the tree is open.
             leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
           },
           group_empty_dirs = true,   -- when true, empty folders will be grouped together
@@ -293,37 +293,19 @@ return {
             }
           }
         },
-        event_handlers = {
-          {
-            event = "file_open_requested",
-            handler = function()
-              -- auto close
-              -- vim.cmd("Neotree close")
-              -- OR
-              require("neo-tree.command").execute({ action = "close" })
-              -- vim.cmd("Neotree")
-            end
-          },
-        }
+        -- event_handlers = {
+        --   {
+        --     event = "file_open_requested",
+        --     handler = function()
+        --       -- auto close
+        --       -- vim.cmd("Neotree close")
+        --       -- OR
+        --       require("neo-tree.command").execute({ action = "close" })
+        --       -- vim.cmd("Neotree")
+        --     end
+        --   },
+        -- }
       })
     end
   },
-
-  -- {
-  --   "nvim-tree/nvim-tree.lua",
-  --   version = "*",
-  --   lazy = false,
-  --   dependencies = {
-  --     "nvim-tree/nvim-web-devicons",
-  --   },
-  --   config = function()
-  --     require("nvim-tree").setup({
-  --       actions = {
-  --         open_file = {
-  --           quit_on_open = true,
-  --         }
-  --       }
-  --     })
-  --   end,
-  -- },
 }

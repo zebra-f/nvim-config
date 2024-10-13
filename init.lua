@@ -774,10 +774,11 @@ require("ibl").setup {
 	},
 	scope = {
 		enabled = true,
-		show_start = false,
-		show_end = false
+		show_start = true,
+		show_end = true
 	},
 }
+
 --
 -- yank and paste from and to the clipboard
 vim.api.nvim_set_option("clipboard", "unnamedplus")
@@ -789,7 +790,6 @@ vim.api.nvim_set_option('smartcase', true)
 -- tabs config
 local theme = {
 	fill = 'TabLineFill',
-	-- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
 	head = 'TabLine',
 	current_tab = 'TabLineSel',
 	tab = 'TabLine',
@@ -799,32 +799,21 @@ local theme = {
 require('tabby.tabline').set(function(line)
 	return {
 		{
-			{ '    ', hl = theme.head },
-			line.sep('  ', theme.head, theme.fill),
+			{ '', hl = theme.head },
+			line.sep('', theme.head, theme.fill),
 		},
 		line.tabs().foreach(function(tab)
 			local hl = tab.is_current() and theme.current_tab or theme.tab
 			return {
-				line.sep(' ', hl, theme.fill),
-				tab.is_current() and '•' or '',
-				tab.number(),
+				line.sep('', hl, theme.fill),
+				tab.is_current() and '' or '',
 				tab.name(),
-				tab.close_btn('x '),
+				tab.close_btn(''),
 				hl = hl,
 				margin = ' ',
 			}
 		end),
 		line.spacer(),
-		line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
-			return {
-				win.is_current() and '•' or '',
-				win.buf_name(),
-				hl = theme.win,
-				margin = ' ',
-				line.sep(' ', theme.head, theme.fill),
-			}
-		end),
-		hl = theme.fill,
 	}
 end)
 
@@ -871,6 +860,7 @@ require('telescope').setup { defaults = { file_ignore_patterns = { "node_modules
 -- vim.opt["tabstop"] = 4
 -- vim.opt["shiftwidth"] = 4
 vim.wo.relativenumber = true
+
 vim.keymap.set('n', '<A-h>', '<C-w>h', { desc = "Move to left window" })
 vim.keymap.set('n', '<A-j>', '<C-w>j', { desc = "Move to lower window" })
 vim.keymap.set('n', '<A-k>', '<C-w>k', { desc = "Move to upper window" })
