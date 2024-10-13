@@ -637,23 +637,31 @@ wk.add({
 	},
 	{ "<leader>fd", group = "Goto [D]efinition" },
 	{
-
 		"<leader>fdt",
 		"<cmd>tab split | lua vim.lsp.buf.definition()<CR>",
 		desc = "Open Defnition In [T]ab"
 
 	},
 	{
-
 		"<leader>fds",
 		"<cmd>split | lua vim.lsp.buf.definition()<CR>",
 		desc = "Open Defnition in [S]plit"
 	},
 	{
-
 		"<leader>fdv",
 		"<cmd>vsplit | lua vim.lsp.buf.definition()<CR>",
-		desc = "Open Defnition in [H]orizontal Split"
+		desc = "Open Defnition in [V]ertical Split"
+	},
+	{ "<leader>fs", group = "[S]plit" },
+	{
+		"<leader>fss",
+		"<cmd>split | lua vim.lsp.buf.definition()<CR>",
+		desc = "[S]plit"
+	},
+	{
+		"<leader>fsv",
+		"<cmd>vsplit | lua vim.lsp.buf.definition()<CR>",
+		desc = "[V]ertical Split"
 	},
 })
 
