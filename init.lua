@@ -277,7 +277,10 @@ require('lazy').setup({
 	},
 
 	-- "gc" to comment visual regions/lines
-	{ 'numToStr/Comment.nvim', opts = {} },
+	{
+		'numToStr/Comment.nvim',
+		opts = {}
+	},
 
 	-- Formatting
 	{
@@ -774,8 +777,8 @@ require("ibl").setup {
 	},
 	scope = {
 		enabled = true,
-		show_start = true,
-		show_end = true
+		show_start = false,
+		show_end = false
 	},
 }
 
