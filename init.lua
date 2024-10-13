@@ -615,26 +615,11 @@ end
 
 -- document existing key chains
 local wk = require('which-key')
--- {
--- 	['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
--- 	['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
--- 	['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
--- 	['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
--- 	['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
--- 	['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
--- 	['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
--- 	['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
--- }
--- required for visual <leader>hs (hunk stage) to work
--- wk.register({
--- 	['<leader>'] = { name = 'VISUAL <leader>' },
--- 	['<leader>h'] = { 'Git [H]unk' },
--- }, { mode = 'v' })
 wk.add({
-	{ "<leader>f", group = "Custom [F]unctionality" },
+	{ "<leader>f",  group = "Custom [F]unctionality" },
 	{
 		"<leader>ff",
-		-- '<cmd>Neotree<cr>'
+		-- '<cmd>Neotree<CR>'
 		function()
 			local lazy_util = require('lazy.core.config')
 			if lazy_util.plugins['neo-tree.nvim'] then -- Note: use the full plugin name
@@ -647,9 +632,29 @@ wk.add({
 	},
 	{
 		"<leader>ft",
-		'<cmd>tabnew<cr>',
+		'<cmd>tabnew<CR>',
 		desc = "Open New [T]ab"
-	}
+	},
+	{ "<leader>fd", group = "Goto [D]efinition" },
+	{
+
+		"<leader>fdt",
+		"<cmd>tab split | lua vim.lsp.buf.definition()<CR>",
+		desc = "Open Defnition In [T]ab"
+
+	},
+	{
+
+		"<leader>fds",
+		"<cmd>split | lua vim.lsp.buf.definition()<CR>",
+		desc = "Open Defnition in [S]plit"
+	},
+	{
+
+		"<leader>fdv",
+		"<cmd>vsplit | lua vim.lsp.buf.definition()<CR>",
+		desc = "Open Defnition in [H]orizontal Split"
+	},
 })
 
 -- mason-lspconfig requires that these setup functions are called in this order
