@@ -723,11 +723,11 @@ mason_lspconfig.setup_handlers {
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
-local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
+local cmp = require 'cmp'
 cmp.setup {
 	snippet = {
 		expand = function(args)
@@ -749,7 +749,7 @@ cmp.setup {
 		['<C-Space>'] = cmp.mapping.complete {},
 		['<CR>'] = cmp.mapping.confirm {
 			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+			select = false,
 		},
 		['<Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -872,9 +872,18 @@ require('telescope').setup { defaults = { file_ignore_patterns = { "node_modules
 -- part of telescope ignore patterns (like .git/) was replaced by (installation of):
 -- https://github.com/BurntSushi/ripgrep
 --
---
+
 -- vim.opt["tabstop"] = 4
 -- vim.opt["shiftwidth"] = 4
+
+-- autocompletion
+cmp.setup {
+	preselect = cmp.PreselectMode.None,
+	completion = {
+		completeopt = "menu,menuone,noselect"
+	},
+}
+
 vim.wo.relativenumber = true
 
 vim.keymap.set('n', '<A-h>', '<C-w>h', { desc = "Move to left window" })
@@ -882,6 +891,7 @@ vim.keymap.set('n', '<A-j>', '<C-w>j', { desc = "Move to lower window" })
 vim.keymap.set('n', '<A-k>', '<C-w>k', { desc = "Move to upper window" })
 vim.keymap.set('n', '<A-l>', '<C-w>l', { desc = "Move to right window" })
 
+vim.keymap.set('n', 'C', '"_C', { noremap = true })
 -- vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 --   pattern = "*.html",
 --   command = "set filetype=htmldjango"
