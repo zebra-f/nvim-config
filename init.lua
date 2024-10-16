@@ -635,6 +635,11 @@ wk.add({
 		'<cmd>tabnew<CR>',
 		desc = "Open New [T]ab"
 	},
+	{
+		"<leader>fa",
+		'<cmd>AerialToggle!<CR>',
+		desc = "Open [A]erial"
+	},
 	{ "<leader>fd", group = "Goto [D]efinition" },
 	{
 		"<leader>fdt",
@@ -651,6 +656,11 @@ wk.add({
 		"<leader>fdv",
 		"<cmd>vsplit | lua vim.lsp.buf.definition()<CR>",
 		desc = "Open Defnition in [V]ertical Split"
+	},
+	{
+		"<leader>fdp",
+		"<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
+		desc = "Open Definition in [P]review Foating Window"
 	},
 	{ "<leader>fs", group = "[S]plit" },
 	{
@@ -784,7 +794,8 @@ local highlight = {
 	"CursorColumn",
 }
 require("ibl").setup {
-	indent = { highlight = highlight, char = "\u{2502}" },
+	-- indent = { highlight = highlight, char = "\u{2502}" },
+	indent = { char = "\u{2502}" },
 	whitespace = {
 		remove_blankline_trail = false,
 	},
