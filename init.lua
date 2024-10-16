@@ -673,6 +673,16 @@ wk.add({
 		"<cmd>vsplit | lua vim.lsp.buf.definition()<CR>",
 		desc = "[V]ertical Split"
 	},
+	{
+		"<leader>fs+",
+		"<cmd>vertical resize +20<CR>",
+		desc = "Vertical Resize [+]20"
+	},
+	{
+		"<leader>fs-",
+		"<cmd>vertical resize -20<CR>",
+		desc = "Vertical Resize [-]20"
+	},
 })
 
 -- mason-lspconfig requires that these setup functions are called in this order
@@ -902,7 +912,10 @@ vim.keymap.set('n', '<A-j>', '<C-w>j', { desc = "Move to lower window" })
 vim.keymap.set('n', '<A-k>', '<C-w>k', { desc = "Move to upper window" })
 vim.keymap.set('n', '<A-l>', '<C-w>l', { desc = "Move to right window" })
 
+-- delete without copying
 vim.keymap.set('n', 'C', '"_C', { noremap = true })
+-- close without saving (ZZ closes and saves)
+vim.keymap.set("n", "Zz", "<cmd>q!<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 --   pattern = "*.html",
 --   command = "set filetype=htmldjango"
