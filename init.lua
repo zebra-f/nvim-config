@@ -914,8 +914,9 @@ vim.keymap.set('n', '<A-l>', '<C-w>l', { desc = "Move to right window" })
 
 -- delete without copying
 vim.keymap.set('n', 'C', '"_C', { noremap = true })
+vim.keymap.set('n', 'D', '"_D', { noremap = true })
 -- close without saving (ZZ closes and saves)
-vim.keymap.set("n", "Zz", "<cmd>q!<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "EE", "<cmd>q!<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 --   pattern = "*.html",
 --   command = "set filetype=htmldjango"
