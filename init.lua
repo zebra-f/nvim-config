@@ -641,11 +641,11 @@ wk.add({
 		desc = "Open [A]erial"
 	},
 	{
-		"<leader>fq",
+		"<leader>fQ", -- lowercase is too risky
 		"<cmd>q!<CR>",
 		desc = "[Q]uit without saving"
 	},
-	{ "<leader>fd", group = "Goto [D]efinition" },
+	{ "<leader>fd", group = "[G]oto [D]efinition" },
 	{
 		"<leader>fdt",
 		"<cmd>tab split | lua vim.lsp.buf.definition()<CR>",
