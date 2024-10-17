@@ -640,6 +640,11 @@ wk.add({
 		'<cmd>AerialToggle!<CR>',
 		desc = "Open [A]erial"
 	},
+	{
+		"<leader>fq",
+		"<cmd>q!<CR>",
+		desc = "[Q]uit without saving"
+	},
 	{ "<leader>fd", group = "Goto [D]efinition" },
 	{
 		"<leader>fdt",
@@ -915,8 +920,7 @@ vim.keymap.set('n', '<A-l>', '<C-w>l', { desc = "Move to right window" })
 -- delete without copying
 vim.keymap.set('n', 'C', '"_C', { noremap = true })
 vim.keymap.set('n', 'D', '"_D', { noremap = true })
--- close without saving (ZZ closes and saves)
-vim.keymap.set("n", "EE", "<cmd>q!<CR>", { noremap = true, silent = true })
+--
 -- vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 --   pattern = "*.html",
 --   command = "set filetype=htmldjango"
