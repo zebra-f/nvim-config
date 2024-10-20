@@ -919,7 +919,10 @@ vim.keymap.set('n', '<A-l>', '<C-w>l', { desc = "Move to right window" })
 
 -- delete without copying
 vim.keymap.set('n', 'C', '"_C', { noremap = true })
+vim.keymap.set('v', 'C', '"_C', { noremap = true })
+
 vim.keymap.set('n', 'D', '"_D', { noremap = true })
+vim.keymap.set('v', 'D', '"_D', { noremap = true })
 
 -- vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 --   pattern = "*.html",
