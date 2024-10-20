@@ -645,7 +645,7 @@ wk.add({
 		"<cmd>q!<CR>",
 		desc = "[Q]uit without saving"
 	},
-	{ "<leader>fd", group = "[G]oto [D]efinition" },
+	{ "<leader>fd", group = "Goto [D]efinition" },
 	{
 		"<leader>fdt",
 		"<cmd>tab split | lua vim.lsp.buf.definition()<CR>",
@@ -665,7 +665,7 @@ wk.add({
 	{
 		"<leader>fdp",
 		"<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
-		desc = "Open Definition in [P]review Foating Window"
+		desc = "Open Definition in [P]review Floating Window"
 	},
 	{ "<leader>fs", group = "[S]plit" },
 	{
@@ -920,7 +920,7 @@ vim.keymap.set('n', '<A-l>', '<C-w>l', { desc = "Move to right window" })
 -- delete without copying
 vim.keymap.set('n', 'C', '"_C', { noremap = true })
 vim.keymap.set('n', 'D', '"_D', { noremap = true })
---
+
 -- vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 --   pattern = "*.html",
 --   command = "set filetype=htmldjango"
